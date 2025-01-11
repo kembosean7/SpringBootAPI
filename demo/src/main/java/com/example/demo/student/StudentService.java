@@ -58,7 +58,13 @@ public class StudentService {
             student.setName(name);
         }
 
-
+        if(email != null && !email.isEmpty() && !Objects.equals(student.getEmail(), email)){
+           Optional<Student> studentOptional = studentRepository.findByStudentByEmail(email);
+           if(studentOptional.isPresent()){
+              throw new IllegalStateException("Email already taken");
+           }
+           student.setEmail(email);
+        }
 
 
     }
