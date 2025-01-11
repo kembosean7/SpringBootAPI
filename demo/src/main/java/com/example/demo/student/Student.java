@@ -8,8 +8,8 @@ import java.time.Period;
 @Table(
         name = "students",
         uniqueConstraints = @UniqueConstraint(
-                name = "emailid_unique",
-                columnNames = "email_address"
+                name = "email_unique",
+                columnNames = "email"
         ))
 public class Student {
 
