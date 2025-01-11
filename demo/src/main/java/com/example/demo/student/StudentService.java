@@ -12,14 +12,14 @@ import java.util.Optional;
 @Service
 public class StudentService {
 
-    private final StudentRepository studentRepository;
+    private  final StudentRepository studentRepository;
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
     @Autowired
-    public List<Student> getStudents() {
+    public List<Student> getStudents(){
         return studentRepository.findAll();
 
     }
@@ -27,12 +27,15 @@ public class StudentService {
     public void addNewStudent(Student student) {
         Optional<Student> studentByEmail = studentRepository.findByStudentByEmail(student.getEmail());
 
-        if (studentByEmail.isPresent()) {
+        if(studentByEmail.isPresent()){
             throw new IllegalStateException("Email already taken");
-        } else {
+        }
+        else{
             studentRepository.save(student);
         }
 
 
     }
+
+
 }
